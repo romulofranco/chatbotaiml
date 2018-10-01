@@ -47,11 +47,18 @@ public class WatsonHelperTest {
         String result = service.getNLUAnalysis(text);
         assertEquals((result != null), true);
     }
-    
+
     @Test
     public void testTranslator() throws InterruptedException {
         logger.info("\n\n......Language Translator........");
         String result = service.getTranslation(text, Language.ENGLISH, Language.PORTUGUESE);
+        assertEquals((result != null), true);
+    }
+
+    @Test
+    public void testDiscovery() throws InterruptedException {
+        logger.info("\n\n......Discovery........");
+        String result = service.getDiscovery(text);
         assertEquals((result != null), true);
     }
 

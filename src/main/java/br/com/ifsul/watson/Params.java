@@ -16,9 +16,9 @@ public class Params {
      public static String NLU_USR = "16c17e4f-454a-49ef-a9d4-fa4cf8371d3c";
      public static String NLU_PWD = "EAKeyisuVSQk";
      
-     public static String DISCOVERY_URL = "";
-     public static String DISCOVERY_USR = "";
-     public static String DISCOVERY_PWD = "";
+     public static String DISCOVERY_URL = "https://gateway.watsonplatform.net/discovery/api";
+     public static String DISCOVERY_USR = "67288fcd-ddb1-484e-b0e5-975563072a5f";
+     public static String DISCOVERY_PWD = "bYX4xaZLLLB2";
           
      public static String PI_URL = "https://gateway.watsonplatform.net/personality-insights/api";
      public static String PI_USR = "a529329e-f393-43c5-b49a-893c1b47fcd2";
