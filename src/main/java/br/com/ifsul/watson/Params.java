@@ -10,7 +10,7 @@ package br.com.ifsul.watson;
  * @author admin
  */
 public class Params {
-     public static String TOKEN_BOT = "";
+     public static String TOKEN_BOT = "561832171:AAEqnmFS1W-yVDFdkUFSmRyY70OTQ_vqXMg";
      
      public static String NLU_URL = "https://gateway.watsonplatform.net/natural-language-understanding/api";
      public static String NLU_USR = "16c17e4f-454a-49ef-a9d4-fa4cf8371d3c";

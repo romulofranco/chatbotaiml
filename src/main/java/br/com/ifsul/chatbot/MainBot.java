@@ -5,16 +5,15 @@
  */
 package br.com.ifsul.chatbot;
 
+import br.com.ifsul.watson.Params;
+
 /**
  *
  * @author romulo
  */
 public class MainBot {
-
-    public static String TOKEN_BOT = "561832171:AAEqnmFS1W-yVDFdkUFSmRyY70OTQ_vqXMg";
-
     public static void main(String[] args) {
-        TelegramBot botListener = new TelegramBot(TOKEN_BOT, true);
+        TelegramBot botListener = new TelegramBot(Params.TOKEN_BOT, true);
         botListener.start();
     }
 }

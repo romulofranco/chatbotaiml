@@ -1,6 +1,7 @@
 package br.com.ifsul.chatbot;
 
 import br.com.ifsul.watson.WatsonHelper;
+import com.ibm.watson.developer_cloud.language_translator.v2.util.Language;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,12 +29,15 @@ public class TelegramBot extends Thread {
     private final String endpoint = "https://api.telegram.org/";
     private final String token;
     private boolean botListen = false;
-    
+
+    private Chatbot bot;
+
     private String lastMessage;
 
     public TelegramBot(String token, boolean listen) {
         this.token = token;
         this.botListen = listen;
+        this.bot = new Chatbot();
     }
 
     public HttpResponse<JsonNode> sendMessage(Integer chatId, String text) throws UnirestException {
@@ -75,27 +79,28 @@ public class TelegramBot extends Thread {
                     for (int i = 0; i < responses.length(); i++) {
                         try {
                             JSONObject message = responses.getJSONObject(i).getJSONObject("message");
-                            int chat_id = message.getJSONObject("chat").getInt("id");
+                            int chatID = message.getJSONObject("chat").getInt("id");
                             String usuario = message.getJSONObject("chat").getString("username");
                             String texto = message.getString("text");
-                            String textoInvertido = "";
 
                             logger.info("Msg recebida - usuario: " + usuario + " texto: " + texto);
-                            
-                            for (int j = texto.length() - 1; j >= 0; j--) {
-                                textoInvertido += texto.charAt(j);
+
+                            if (texto.equalsIgnoreCase("/ultimamsg")) {
+                                sendMessage(chatID, this.lastMessage);
+                            } else if (texto.equalsIgnoreCase("/analise")) {
+                                WatsonHelper wh = new WatsonHelper();
+                                String textEnglish = wh.getTranslation(this.lastMessage, Language.PORTUGUESE, Language.ENGLISH);
+                                logger.info("Texto traduzido " + textEnglish);
+                                String result = wh.getNLUAnalysis(textEnglish);
+                                sendMessage(chatID, "Ultima msg analisada: " + this.lastMessage + "\n" + result);
+                            }  else if (texto.equalsIgnoreCase("/teste")) {
+                                sendMessage(chatID, "Parece que esse bot está funcionando...");
+                            } else {
+                                String msg = bot.respostaInteligente(texto);
+                                sendMessage(chatID, msg);
+                                this.lastMessage = texto;
                             }
 
-                            if (texto.equalsIgnoreCase("/analise")) {
-                                
-                                WatsonHelper wh = new WatsonHelper();
-                                String result = wh.getNLUAnalysis(this.lastMessage);
-                                
-                            } else if (texto.equalsIgnoreCase("teste")) {
-                                sendMessage(chat_id, "Parece que esse bot está funcionando...");
-                            } else {
-                                sendMessage(chat_id, textoInvertido);
-                            }
                         } catch (Exception e) {
                             Logger.getLogger(TelegramBot.class.getName()).log(Level.SEVERE, null, e);
                         }
