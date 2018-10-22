@@ -1,0 +1,6 @@
+0,OI,*,*,eai blz!,dialog.aiml
+0,* NOME,*,*,Meu nome é Java AIML Bot,dialog.aiml
+0,* PENSANDO,*,*,Estou pensando em como ser util!!! :),dialog.aiml
+0,* CHATBOT,*,*,<random>#Newline                <li>Chatbot eh um programa?</li>#Newline                <li>Ainda nao sei</li>#Newline            </random>,dialog.aiml
+0,* FILME,*,*,<random>#Newline                <li>O que vc quer saber sobre filmes?</li>#Newline                <li>Posso te indicar um filme</li>#Newline            </random>,dialog.aiml
+0,ME FALE SOBRE *,*,*,Aqui está o que vc quer saber sobre <star/>.,dialog.aiml

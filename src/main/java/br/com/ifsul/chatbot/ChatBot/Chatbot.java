@@ -18,7 +18,10 @@ public class Chatbot {
     public Chatbot() {
         resourcesPath = getResourcesPath();
         MagicBooleans.trace_mode = TRACE_MODE;
+
         bot = new Bot("super", resourcesPath);
+
+        bot.writeAIMLIFFiles();
         chatSession = new Chat(bot);
         bot.brain.nodeStats();
     }
@@ -52,7 +55,7 @@ public class Chatbot {
                     response = response.replace("&gt;", ">");
                 }
                 System.out.println("Robot : " + response);
-                
+
                 return response;
             }
         } catch (Exception e) {

@@ -1,4 +1,0 @@
-0,OI,*,*,eai blz!,a-custom-entry.aiml
-0,* CHATBOT,*,*,<random>#Newline        <li>Chatbot eh um programa?</li>#Newline        <li>Ainda nao sei</li>#Newline      </random>,a-custom-entry.aiml
-0,* FILME,*,*,<random>#Newline        <li>O que vc quer saber sobre filmes?</li>#Newline        <li>Posso te indicar um filme</li>#Newline      </random>,a-custom-entry.aiml
-0,ME FALE SOBRE *,*,*,Aqui está o que vc quer saber sobre <star/>.#Newline	<button>#Newline		<text> Clique aqui </text>#Newline		<url>https://pt.wikipedia.org/wiki/<star/></url>.#Newline		</button>,a-custom-entry.aiml

@@ -27,10 +27,12 @@ public class TelegramBot extends Thread {
     private final String endpoint = "https://api.telegram.org/";
     private final String token;
     private boolean botListen = false;
+    private Chatbot botAIML ;
 
     public TelegramBot(String token, boolean listen) {
         this.token = token;
         this.botListen = listen;
+        botAIML = new Chatbot();
     }
 
     public HttpResponse<JsonNode> sendMessage(Integer chatId, String text) throws UnirestException {
@@ -73,20 +75,21 @@ public class TelegramBot extends Thread {
                         try {
                             JSONObject message = responses.getJSONObject(i).getJSONObject("message");
                             int chat_id = message.getJSONObject("chat").getInt("id");
-                            String usuario = message.getJSONObject("chat").getString("username");
+//                            String usuario = message.getJSONObject("chat").getString("username");
                             String texto = message.getString("text");
                             String textoInvertido = "";
 
-                            logger.info("Msg recebida - usuario: " + usuario + " texto: " + texto);
+//                            logger.info("Msg recebida - usuario: " + usuario + " texto: " + texto);
 
-                            for (int j = texto.length() - 1; j >= 0; j--) {
-                                textoInvertido += texto.charAt(j);
-                            }
+//                            for (int j = texto.length() - 1; j >= 0; j--) {
+//                                textoInvertido += texto.charAt(j);
+//                            }
 
-                            if (texto.equalsIgnoreCase("teste")) {
+                            if (texto.equalsIgnoreCase("teste")) {                                
                                 sendMessage(chat_id, "Parece que esse bot está funcionando...");
                             } else {
-                                sendMessage(chat_id, textoInvertido);
+                                String resposta = botAIML.respostaInteligente(texto);
+                                sendMessage(chat_id, resposta);
                             }
                         } catch (Exception e) {
                             Logger.getLogger(TelegramBot.class.getName()).log(Level.SEVERE, null, e);
